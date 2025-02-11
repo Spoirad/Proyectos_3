@@ -1,0 +1,41 @@
+//Importo mongoose y mongoose-delete para poder hacer soft delete
+const mongoose = require('mongoose');
+const mongooseDelete = require('mongoose-delete');
+
+
+//Creo el esquema de usuario
+const UsuarioSchema = new mongoose.Schema(
+    {   
+        name:{
+            type: String
+        },
+        mail:{
+            type: String
+        },
+        password:{
+            type: String
+        },
+        role:{
+            type: String,
+            enum:['user', 'admin', 'anonymous'],
+            default: 'admin'
+        },
+        age:{
+            type: Number
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now
+        },
+        updatedAt: {
+            type: Date,
+            default: Date.now
+        }
+    },
+    {
+        timestamps: true, // createdAt, updatedAt
+        versionKey: false
+    })
+    UsuarioSchema.plugin(mongooseDelete, {overrideMethods: "all"})
+
+    module.exports = mongoose.model("usuario",UsuarioSchema)
