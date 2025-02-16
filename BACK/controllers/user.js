@@ -21,19 +21,4 @@ const getItems = async (req, res) => {
     }
 };
 
-const createItem = async (req, res) => {
-    try{
-        //Obtengo los datos validados
-        const data = matchedData(req);
-        //Creo un nuevo usuario
-        const newUser = await userModel.create(data);
-        //Envio el nuevo usuario
-        res.send(newUser);
-    }
-    catch(error){
-        //Manejo el error
-        handleHttpError(res, "ERR_CREATE_USER");
-    }
-};
-
-module.exports = { getItems,createItem }
+module.exports = { getItems }

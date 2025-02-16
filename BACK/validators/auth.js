@@ -12,4 +12,10 @@ const validateRegister = [
     (req,res,next) => validateResults(req,res,next)
 ];
 
-module.exports = {validateRegister}
+const validateLogin = [
+    check ("mail").exists().notEmpty().isEmail(),
+    check ("password").exists().notEmpty().isLength({min: 8}),
+    (req,res,next) => validateResults(req,res,next)
+];
+
+module.exports = {validateRegister, validateLogin}
