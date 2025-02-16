@@ -18,24 +18,16 @@ const UsuarioSchema = new mongoose.Schema(
         role:{
             type: String,
             enum:['user', 'admin', 'anonymous'],
-            default: 'admin'
+            default: 'user'
         },
         age:{
             type: Number
-        },
-        createdAt: {
-            type: Date,
-            default: Date.now
-        },
-        updatedAt: {
-            type: Date,
-            default: Date.now
         }
     },
     {
-        timestamps: true, // createdAt, updatedAt
+        timestamps: true, 
         versionKey: false
     })
     UsuarioSchema.plugin(mongooseDelete, {overrideMethods: "all"})
 
-    module.exports = mongoose.model("usuario",UsuarioSchema)
+    module.exports = mongoose.model("user",UsuarioSchema)
