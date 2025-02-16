@@ -8,5 +8,12 @@ router.get("/", (req, res) => {
 });
 
 
+router.post("/register", (req, res) => {
+    res.send("Register");
+});
+
+
+
+
 //Exporto el router de auth
 module.exports = router
